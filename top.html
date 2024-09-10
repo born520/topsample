@@ -5,24 +5,12 @@
     </div>
     <div class="center-column">
         <h1>더투어</h1>
-        <div class="mobile-buttons">
-            <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer" class="kakao-btn">카카오톡 상담</a>
-            <a href="tel:051-817-3060" class="phone-btn">전화 연결</a>
-        </div>
     </div>
     <div class="right-column">
         <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer" class="kakao-btn">카카오톡 상담</a>
         <a href="tel:051-817-3060" class="phone-btn">전화 연결</a>
     </div>
-    <div class="mobile-menu-icon">&#9776;</div>
 </header>
-
-<div class="mobile-menu">
-    <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer">카카오톡 상담</a>
-    <a href="tel:051-817-3060">전화 연결</a>
-    <a href="#">메뉴 항목 1</a>
-    <a href="#">메뉴 항목 2</a>
-</div>
 
 <style>
     header {
@@ -45,8 +33,12 @@
     .right-column {
         text-align: right;
         display: flex;
-        flex-direction: column;
-        gap: 10px; /* 위아래 간격 추가 */
+        gap: 10px; /* 메뉴들 간의 간격 */
+    }
+    .right-column a {
+        display: inline-block;
+        padding: 5px 10px; /* 글자 수에 맞게 버튼 크기 조정 */
+        font-size: 14px;
     }
     header h1 {
         margin: 0;
@@ -57,56 +49,24 @@
         font-size: clamp(12px, 4vw, 16px);
         white-space: nowrap;
     }
-    .kakao-btn, .phone-btn {
+    .kakao-btn {
         color: #3A1D1D;
         background-color: #FEE500;
         text-decoration: none;
-        font-size: 16px;
         font-weight: bold;
-        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .phone-btn {
+        color: white;
+        background-color: #34b7f1; /* 전화연결 버튼 색상 변경 */
+        text-decoration: none;
+        font-weight: bold;
         border-radius: 4px;
         transition: background-color 0.3s, color 0.3s;
     }
     .kakao-btn:hover, .phone-btn:hover {
         background-color: #FDD900;
-    }
-    .mobile-menu-icon {
-        display: none;
-        font-size: 24px;
-        cursor: pointer;
-    }
-    .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: -250px;
-        width: 250px;
-        height: 100%;
-        background-color: #333;
-        padding: 20px;
-        transition: right 0.3s ease-in-out;
-        z-index: 1000; /* 메뉴가 다른 요소들 위에 표시되도록 */
-    }
-    .mobile-menu a {
-        display: block;
-        color: white;
-        text-decoration: none;
-        padding: 10px 0;
-        font-size: 18px;
-    }
-
-    /* 모바일 화면에서 버튼 스타일 */
-    .mobile-buttons {
-        display: none;
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 10px;
-    }
-    .mobile-buttons .kakao-btn, .mobile-buttons .phone-btn {
-        flex: 1;
-        text-align: center;
-        font-size: 14px;
     }
 
     /* 반응형 디자인 */
@@ -115,45 +75,10 @@
             padding: 10px;
         }
         .left-column, .right-column {
-            display: none;
+            display: none; /* 모바일에서 좌우 컬럼 숨김 */
         }
         .center-column h1 {
             font-size: 20px;
         }
-        .mobile-buttons {
-            display: flex; /* 모바일에서만 버튼 표시 */
-        }
-        .mobile-menu-icon {
-            display: block;
-        }
     }
 </style>
-
-<script>
-    const menuIcon = document.querySelector('.mobile-menu-icon');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    let isMenuOpen = false;
-
-    // 햄버거 아이콘 클릭 시 메뉴 열기/닫기
-    menuIcon.addEventListener('click', (e) => {
-        e.stopPropagation(); // 클릭 이벤트가 다른 요소로 전파되는 것을 막음
-        isMenuOpen = !isMenuOpen;
-        mobileMenu.style.right = isMenuOpen ? '0' : '-250px';
-    });
-
-    // 메뉴 외부를 클릭하면 메뉴 닫기
-    document.addEventListener('click', (event) => {
-        if (isMenuOpen && !mobileMenu.contains(event.target) && event.target !== menuIcon) {
-            isMenuOpen = false;
-            mobileMenu.style.right = '-250px';
-        }
-    });
-
-    // 모바일 메뉴 내의 링크 클릭 시 메뉴 닫기
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            isMenuOpen = false;
-            mobileMenu.style.right = '-250px';
-        });
-    });
-</script>
