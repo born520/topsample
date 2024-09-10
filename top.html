@@ -37,7 +37,8 @@
     }
     header p {
         margin: 5px 0 0 0;
-        font-size: 16px;
+        font-size: clamp(12px, 4vw, 16px); /* 화면 크기에 맞게 자동 조정 */
+        white-space: nowrap; /* 한 줄에서 줄바꿈 방지 */
     }
     header a {
         color: #ffffff;
