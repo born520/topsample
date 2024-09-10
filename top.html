@@ -5,6 +5,10 @@
     </div>
     <div class="center-column">
         <h1>더투어</h1>
+        <div class="mobile-buttons">
+            <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer" class="kakao-btn">카카오톡 상담</a>
+            <a href="tel:051-817-3060" class="phone-btn">전화 연결</a>
+        </div>
     </div>
     <div class="right-column">
         <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer" class="kakao-btn">카카오톡 상담</a>
@@ -33,11 +37,12 @@
     .right-column {
         text-align: right;
         display: flex;
-        gap: 10px; /* 메뉴들 간의 간격 */
+        gap: 10px;
+        justify-content: flex-end; /* 큰 화면에서 오른쪽에 바짝 붙이기 */
     }
     .right-column a {
         display: inline-block;
-        padding: 5px 10px; /* 글자 수에 맞게 버튼 크기 조정 */
+        padding: 5px 10px;
         font-size: 14px;
     }
     header h1 {
@@ -59,7 +64,7 @@
     }
     .phone-btn {
         color: white;
-        background-color: #34b7f1; /* 전화연결 버튼 색상 변경 */
+        background-color: #34b7f1;
         text-decoration: none;
         font-weight: bold;
         border-radius: 4px;
@@ -69,16 +74,40 @@
         background-color: #FDD900;
     }
 
+    /* 모바일 버튼을 두 줄로 나누기 */
+    .mobile-buttons {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
     /* 반응형 디자인 */
     @media (max-width: 768px) {
         header {
             padding: 10px;
+            flex-direction: column;
+            align-items: center;
         }
         .left-column, .right-column {
-            display: none; /* 모바일에서 좌우 컬럼 숨김 */
+            display: none; /* 모바일에서 좌우 컬럼 숨기기 */
+        }
+        .center-column {
+            text-align: center;
         }
         .center-column h1 {
             font-size: 20px;
+        }
+        .mobile-buttons {
+            display: flex; /* 모바일에서 버튼 두 줄로 표시 */
+            width: 100%;
+            max-width: 300px;
+            justify-content: space-between;
+        }
+        .mobile-buttons a {
+            width: 48%; /* 버튼을 두 줄로 나누기 */
+            text-align: center;
+            font-size: 14px;
         }
     }
 </style>
