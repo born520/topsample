@@ -2,7 +2,7 @@
     <div class="left-column" style="display: flex; align-items: center;">
         <img src="https://i.postimg.cc/XqMnvrS0/image.png" alt="Logo" style="width: 250px; height: 70px; margin-right: 10px;">
     </div>
-        <div class="center-column">
+    <div class="center-column">
         <h1>특가! 긴급모객!</h1>
     </div>
     <div class="right-column">
@@ -11,7 +11,6 @@
         </a>
     </div>
 </header>
-
 
 <style>
     /* 기본 레이아웃 - 큰 화면에서 적용 */
@@ -49,29 +48,27 @@
         transform: scale(1.1); /* 아이콘 확대 효과 */
     }
 
-    /* 모바일에서 여행사명 중앙 배치 및 카카오톡 아이콘 우측 정렬 */
+    /* 모바일에서 로고와 카카오톡 버튼 나란히 배치 */
     @media (max-width: 768px) {
-        .left-column {
-            display: none; /* 모바일에서 좌측 컬럼 숨기기 */
-        }
         .center-column {
-            text-align: center;
-            flex: 1;
+            display: none; /* 모바일에서 중앙 컬럼 숨기기 */
+        }
+        .left-column, .right-column {
+            flex: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%; /* 가로 전체 차지 */
+        }
+        .left-column img {
+            width: 150px; /* 모바일에서 로고 크기 조정 */
+            height: auto;
         }
         .right-column {
-            flex: 0;
-            text-align: right;
+            justify-content: flex-end;
         }
         header {
             padding: 5px 10px; /* 모바일에서 패딩 최소화 */
-            justify-content: center;
-        }
-        .center-column h1 {
-            font-size: 18px; /* 모바일에서 폰트 크기 더 줄이기 */
-        }
-        .kakao-btn {
-            text-align: right;
-            margin-left: auto;
         }
     }
 </style>
