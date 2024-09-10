@@ -11,9 +11,8 @@
     <meta property="og:image" content="https://i.postimg.cc/NF0ngL3s/image.png">
     <meta property="og:url" content="https://thetour.shorttime.co.kr">
     <meta property="og:type" content="website">
-    
+
     <style>
-        /* 최소한의 스타일만 유지 */
         body {
             margin: 0;
             padding: 0;
@@ -22,6 +21,72 @@
             background-color: #f4f4f4;
             padding: 10px;
             text-align: center;
+        }
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: right;
+        }
+        .kakao-btn, .phone-btn {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .kakao-btn {
+            color: #3A1D1D;
+            background-color: #FEE500;
+        }
+        .phone-btn {
+            color: #fff;
+            background-color: #34b7f1; /* 전화 버튼 색상 */
+        }
+        @media (min-width: 768px) {
+            .kakao-btn, .phone-btn {
+                width: auto; /* 글자에 맞게 크기 조정 */
+            }
+        }
+        .mobile-menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            padding: 20px;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000; /* 메뉴가 다른 요소들 위에 표시되도록 */
+        }
+        .mobile-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            font-size: 18px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px;
+            }
+            .left-column, .right-column {
+                display: none;
+            }
+            .center-column h1 {
+                font-size: 20px;
+            }
+            .mobile-menu-icon {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -34,59 +99,96 @@
         <!-- 여기에 바디 HTML 내용이 로드됩니다 -->
     </div>
 
-    <script>
-// 상단 탑 로드
-fetch('top.html')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('탑 HTML을 불러오지 못했습니다.');
-        }
-        return response.text();
-    })
-    .then(html => {
-        document.getElementById('top-content').innerHTML = html;
-    })
-    .catch(error => {
-        console.error('상단 탑을 불러오는 데 실패했습니다:', error);
-        document.getElementById('top-content').innerHTML = '콘텐츠를 불러오는 데 실패했습니다. 나중에 다시 시도해 주세요.';
-    });
+    <div class="mobile-menu-icon">&#9776;</div>
 
-        // 바디 HTML 로드 (원본 스타일 유지)
-        fetch('https://thetour.shorttime.co.kr')
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                // 원본 페이지의 스타일 시트 가져오기
-                const styles = doc.getElementsByTagName('style');
-                const links = doc.getElementsByTagName('link');
-                
-                for (let style of styles) {
-                    document.head.appendChild(style.cloneNode(true));
-                }
-                
-                for (let link of links) {
-                    if (link.rel === 'stylesheet') {
-                        document.head.appendChild(link.cloneNode(true));
+    <div class="mobile-menu">
+        <a href="https://pf.kakao.com/_xdGEVG/chat" class="kakao-btn" target="_blank" rel="noopener noreferrer">카카오톡 상담</a>
+        <a href="tel:051-817-3060" class="phone-btn">전화 연결</a>
+        <!-- 다른 메뉴 항목 추가 가능 -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 상단 탑 로드
+            fetch('top.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('탑 HTML을 불러오지 못했습니다.');
                     }
-                }
-                
-                // body 내용 삽입
-                document.getElementById('body-content').innerHTML = doc.body.innerHTML;
-                
-                // 원본 페이지의 스크립트 실행 (주의: 보안 위험이 있을 수 있음)
-                const scripts = doc.getElementsByTagName('script');
-                for (let script of scripts) {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    document.body.appendChild(newScript);
-                }
-            })
-            .catch(error => {
-                console.error('바디 HTML을 불러오는 데 실패했습니다:', error);
-                document.getElementById('body-content').innerHTML = '콘텐츠를 불러오는 데 실패했습니다. 나중에 다시 시도해 주세요.';
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('top-content').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('상단 탑을 불러오는 데 실패했습니다:', error);
+                    document.getElementById('top-content').innerHTML = '콘텐츠를 불러오는 데 실패했습니다. 나중에 다시 시도해 주세요.';
+                });
+
+            // 바디 HTML 로드 (원본 스타일 유지)
+            fetch('https://thetour.shorttime.co.kr')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+
+                    // 원본 페이지의 스타일 시트 가져오기
+                    const styles = doc.getElementsByTagName('style');
+                    const links = doc.getElementsByTagName('link');
+
+                    for (let style of styles) {
+                        document.head.appendChild(style.cloneNode(true));
+                    }
+
+                    for (let link of links) {
+                        if (link.rel === 'stylesheet') {
+                            document.head.appendChild(link.cloneNode(true));
+                        }
+                    }
+
+                    // body 내용 삽입
+                    document.getElementById('body-content').innerHTML = doc.body.innerHTML;
+
+                    // 원본 페이지의 스크립트 실행
+                    const scripts = doc.getElementsByTagName('script');
+                    for (let script of scripts) {
+                        const newScript = document.createElement('script');
+                        newScript.textContent = script.textContent;
+                        document.body.appendChild(newScript);
+                    }
+                })
+                .catch(error => {
+                    console.error('바디 HTML을 불러오는 데 실패했습니다:', error);
+                    document.getElementById('body-content').innerHTML = '콘텐츠를 불러오는 데 실패했습니다.';
+                });
+
+            // 모바일 메뉴 열기/닫기 기능
+            const menuIcon = document.querySelector('.mobile-menu-icon');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            let isMenuOpen = false;
+
+            menuIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // 클릭 이벤트가 다른 요소로 전파되는 것을 막음
+                isMenuOpen = !isMenuOpen;
+                mobileMenu.style.right = isMenuOpen ? '0' : '-250px';
             });
+
+            // 메뉴 외부를 클릭하면 메뉴 닫기
+            document.addEventListener('click', (event) => {
+                if (isMenuOpen && !mobileMenu.contains(event.target) && event.target !== menuIcon) {
+                    isMenuOpen = false;
+                    mobileMenu.style.right = '-250px';
+                }
+            });
+
+            // 모바일 메뉴 내의 링크 클릭 시 메뉴 닫기
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenu.style.right = '-250px';
+                });
+            });
+        });
     </script>
 </body>
 </html>
