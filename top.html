@@ -38,7 +38,7 @@
         text-align: right;
         display: flex;
         gap: 10px;
-        justify-content: flex-end; /* 큰 화면에서 오른쪽에 바짝 붙이기 */
+        justify-content: flex-end;
     }
     .right-column a {
         display: inline-block;
@@ -74,10 +74,11 @@
         background-color: #FDD900;
     }
 
-    /* 모바일 버튼을 두 줄로 나누기 */
+    /* 모바일 버튼을 한 줄에 두 개로 나누기 */
     .mobile-buttons {
         display: none;
-        flex-direction: column;
+        flex-direction: row; /* 가로로 나열 */
+        justify-content: space-between;
         gap: 10px;
         margin-top: 10px;
     }
@@ -99,13 +100,12 @@
             font-size: 20px;
         }
         .mobile-buttons {
-            display: flex; /* 모바일에서 버튼 두 줄로 표시 */
+            display: flex; /* 모바일에서 버튼 가로로 표시 */
             width: 100%;
             max-width: 300px;
-            justify-content: space-between;
         }
         .mobile-buttons a {
-            width: 48%; /* 버튼을 두 줄로 나누기 */
+            flex: 1; /* 각 버튼이 동일한 너비를 가짐 */
             text-align: center;
             font-size: 14px;
         }
