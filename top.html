@@ -17,49 +17,39 @@
 </header>
 
 <style>
-    /* 전체 화면 레이아웃 */
+    /* 기본 레이아웃 - 큰 화면에서 적용 */
     header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: linear-gradient(to right, #00b4db, #0083b0);
+        background-color: white;
         padding: 20px;
-        color: white;
-    }
-    .left-column, .center-column, .right-column {
-        flex: 1;
+        color: black;
     }
     .left-column {
+        flex: 1;
         text-align: left;
     }
     .center-column {
         text-align: center;
+        flex: 1;
     }
     .right-column {
+        flex: 1;
         text-align: right;
         display: flex;
         gap: 10px;
-        justify-content: flex-end;
-    }
-    .right-column a {
-        display: inline-block;
-        padding: 5px 10px;
-        font-size: 14px;
     }
     header h1 {
         margin: 0;
         font-size: 24px;
-    }
-    header p {
-        margin: 5px 0 0 0;
-        font-size: clamp(12px, 4vw, 16px);
-        white-space: nowrap;
     }
     .kakao-btn {
         color: #3A1D1D;
         background-color: #FEE500;
         text-decoration: none;
         font-weight: bold;
+        padding: 10px 15px;
         border-radius: 4px;
         transition: background-color 0.3s, color 0.3s;
     }
@@ -68,6 +58,7 @@
         background-color: #34b7f1;
         text-decoration: none;
         font-weight: bold;
+        padding: 10px 15px;
         border-radius: 4px;
         transition: background-color 0.3s, color 0.3s;
     }
@@ -75,12 +66,11 @@
         background-color: #FDD900;
     }
 
-    /* 모바일에서 버튼을 한 줄에 두 개로 나누기 */
+    /* 모바일에서는 버튼을 가로로 배열 */
     .mobile-buttons {
-        display: none;
+        display: none; /* 기본적으로 숨김 */
         flex-direction: row;
         justify-content: space-between;
-        gap: 10px;
         margin-top: 10px;
         width: 100%;
     }
@@ -88,34 +78,38 @@
     /* 반응형 디자인 */
     @media (max-width: 768px) {
         header {
-            padding: 10px;
             flex-direction: column;
             align-items: center;
+            padding: 10px;
         }
         .left-column, .right-column {
             display: none; /* 모바일에서 좌우 컬럼 숨기기 */
-        }
-        .center-column {
-            text-align: center;
         }
         .center-column h1 {
             font-size: 20px;
             margin-bottom: 10px;
         }
         .mobile-buttons {
-            display: flex; /* 모바일에서 버튼 가로로 표시 */
+            display: flex; /* 모바일에서만 버튼 보이게 설정 */
+            width: 100%; /* 가로로 너비를 꽉 채우기 */
         }
         .mobile-buttons a {
-            flex: 1; /* 두 버튼이 동일한 너비를 차지하도록 설정 */
+            flex: 1;
             text-align: center;
             font-size: 16px;
-            padding: 15px 0; /* 버튼 내부 패딩 */
+            padding: 15px 0;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            background-color: #f4f4f4;
+            color: black;
+            border-radius: 4px;
+            text-decoration: none;
         }
-        .kakao-btn {
-            background-color: #FFEB3B; /* 노란색으로 유지 */
+        .mobile-buttons a:first-child {
+            margin-left: 0;
         }
-        .phone-btn {
-            background-color: #2196F3; /* 전화 연결 버튼에 파란색 */
+        .mobile-buttons a:last-child {
+            margin-right: 0;
         }
     }
 </style>
