@@ -7,7 +7,8 @@
         <h1>더투어</h1>
     </div>
     <div class="right-column">
-        <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer">카카오톡 상담</a>
+        <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer" class="kakao-btn">카카오톡 상담</a>
+        <a href="tel:010-1234-5678" class="call-btn">전화 상담</a>
     </div>
 </header>
 
@@ -36,10 +37,6 @@
         margin: 0;
         font-size: 24px;
     }
-    header h3 {
-        margin: 5px 0 0 0;
-        font-size: 16px;
-    }
     header p {
         margin: 5px 0 0 0;
         font-size: clamp(12px, 4vw, 16px);
@@ -54,9 +51,18 @@
         padding: 8px 12px;
         border-radius: 4px;
         transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+        margin: 5px;
     }
     header a:hover {
         background-color: #FDD900;
+    }
+    .call-btn {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .call-btn:hover {
+        background-color: #45a049;
     }
     
     /* 모바일 화면에서만 적용되는 스타일 */
@@ -64,16 +70,23 @@
         header {
             flex-direction: column;
             text-align: center;
-            padding: 10px; /* 탑부분의 높이를 최소화 */
+            padding: 10px;
         }
-        .left-column, .center-column h3 {
-            display: none; /* 모바일에서 숨김 처리 */
+        .left-column {
+            display: none;
         }
         .center-column h1 {
-            font-size: 20px; /* 여행사명 크기 조정 */
+            font-size: 20px;
+            margin-bottom: 10px;
         }
         .right-column {
-            margin: 10px 0 0 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .right-column a {
+            font-size: 14px;
+            padding: 6px 10px;
         }
     }
 </style>
