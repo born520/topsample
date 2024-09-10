@@ -77,10 +77,11 @@
     /* 모바일 버튼을 한 줄에 두 개로 나누기 */
     .mobile-buttons {
         display: none;
-        flex-direction: row; /* 가로로 나열 */
+        flex-direction: row;
         justify-content: space-between;
         gap: 10px;
         margin-top: 10px;
+        width: 100%; /* 전체 가로 너비에 맞춤 */
     }
 
     /* 반응형 디자인 */
@@ -101,13 +102,12 @@
         }
         .mobile-buttons {
             display: flex; /* 모바일에서 버튼 가로로 표시 */
-            width: 100%;
-            max-width: 300px;
         }
         .mobile-buttons a {
-            flex: 1; /* 각 버튼이 동일한 너비를 가짐 */
+            flex: 1; /* 두 버튼이 동일한 너비를 차지하도록 설정 */
             text-align: center;
             font-size: 14px;
+            padding: 10px 0; /* 버튼 내부 패딩 */
         }
     }
 </style>
