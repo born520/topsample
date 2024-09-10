@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밴드 정보</title>
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="밴드 정보">
+    <meta property="og:description" content="밴드에 대한 정보를 제공합니다">
+    <meta property="og:image" content="https://born520.github.io/topsample/assets/images/main.jpg">
+    <meta property="og:url" content="https://born520.github.io/topsample/">
+    <meta property="og:type" content="website">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+        }
+        #top-content {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+        #body-content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="top-content">
+        <!-- 여기에 상단 탑 내용이 로드됩니다 -->
+    </div>
+
+    <div id="body-content">
+        <!-- 여기에 바디 HTML 내용이 로드됩니다 -->
+    </div>
+
+    <script>
+        // 상단 탑 로드
+        fetch('top.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('top-content').innerHTML = html;
+            })
+            .catch(error => console.error('상단 탑을 불러오는 데 실패했습니다:', error));
+
+        // 바디 HTML 로드
+        fetch('https://born520.github.io/band')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                document.getElementById('body-content').innerHTML = doc.body.innerHTML;
+            })
+            .catch(error => console.error('바디 HTML을 불러오는 데 실패했습니다:', error));
+    </script>
+</body>
+</html>
