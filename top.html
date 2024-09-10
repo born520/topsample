@@ -37,6 +37,10 @@
         margin: 0;
         font-size: 24px;
     }
+    header h3 {
+        margin: 5px 0 0 0;
+        font-size: 16px;
+    }
     header p {
         margin: 5px 0 0 0;
         font-size: clamp(12px, 4vw, 16px);
@@ -56,14 +60,21 @@
         background-color: #FDD900;
     }
     
+    /* 모바일 화면에서만 적용되는 스타일 */
     @media (max-width: 768px) {
         header {
             flex-direction: column;
             text-align: center;
+            padding: 10px; /* 탑부분의 높이를 최소화 */
         }
-        .left-column, .center-column, .right-column {
-            text-align: center;
-            margin: 10px 0;
+        .left-column, .center-column h3 {
+            display: none; /* 모바일에서 숨김 처리 */
+        }
+        .center-column h1 {
+            font-size: 20px; /* 여행사명 크기 조정 */
+        }
+        .right-column {
+            margin: 10px 0 0 0;
         }
     }
 </style>
