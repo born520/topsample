@@ -7,8 +7,9 @@
         <h1>더투어</h1>
     </div>
     <div class="right-column">
-        <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer" class="kakao-btn">카카오톡 상담</a>
-        <a href="tel:051-817-3060" class="phone-btn">전화 연결</a>
+        <a href="https://pf.kakao.com/_xdGEVG/chat" target="_blank" rel="noopener noreferrer" class="kakao-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/KakaoTalk_logo.svg" alt="카톡 아이콘" style="width: 24px; height: 24px;">
+        </a>
     </div>
 </header>
 
@@ -33,46 +34,43 @@
     .right-column {
         flex: 1;
         text-align: right;
-        display: flex;
-        gap: 10px;
     }
     header h1 {
         margin: 0;
         font-size: 24px;
     }
-    .kakao-btn {
-        color: #3A1D1D;
-        background-color: #FEE500;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 10px 15px;
-        border-radius: 4px;
-        transition: background-color 0.3s, color 0.3s;
+    .kakao-btn img {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s;
     }
-    .phone-btn {
-        color: white;
-        background-color: #34b7f1;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 10px 15px;
-        border-radius: 4px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .kakao-btn:hover, .phone-btn:hover {
-        background-color: #FDD900;
+    .kakao-btn img:hover {
+        transform: scale(1.1); /* 아이콘 확대 효과 */
     }
 
-    /* 모바일에서 여행사명만 표시 */
+    /* 모바일에서 여행사명 중앙 배치 및 카카오톡 아이콘 우측 정렬 */
     @media (max-width: 768px) {
-        .left-column, .right-column {
-            display: none; /* 모바일에서 좌우 컬럼 숨기기 */
+        .left-column {
+            display: none; /* 모바일에서 좌측 컬럼 숨기기 */
+        }
+        .center-column {
+            text-align: center;
+            flex: 1;
+        }
+        .right-column {
+            flex: 0;
+            text-align: right;
         }
         header {
-            justify-content: center; /* 중앙 정렬 */
             padding: 10px;
+            justify-content: center;
         }
         .center-column h1 {
-            font-size: 20px; /* 여행사명 크기 조정 */
+            font-size: 20px;
+        }
+        .kakao-btn {
+            text-align: right;
+            margin-left: auto;
         }
     }
 </style>
