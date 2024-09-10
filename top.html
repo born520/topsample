@@ -17,6 +17,7 @@
 </header>
 
 <style>
+    /* 전체 화면 레이아웃 */
     header {
         display: flex;
         justify-content: space-between;
@@ -74,14 +75,14 @@
         background-color: #FDD900;
     }
 
-    /* 모바일 버튼을 한 줄에 두 개로 나누기 */
+    /* 모바일에서 버튼을 한 줄에 두 개로 나누기 */
     .mobile-buttons {
         display: none;
         flex-direction: row;
         justify-content: space-between;
         gap: 10px;
         margin-top: 10px;
-        width: 100%; /* 전체 가로 너비에 맞춤 */
+        width: 100%;
     }
 
     /* 반응형 디자인 */
@@ -99,6 +100,7 @@
         }
         .center-column h1 {
             font-size: 20px;
+            margin-bottom: 10px;
         }
         .mobile-buttons {
             display: flex; /* 모바일에서 버튼 가로로 표시 */
@@ -106,8 +108,14 @@
         .mobile-buttons a {
             flex: 1; /* 두 버튼이 동일한 너비를 차지하도록 설정 */
             text-align: center;
-            font-size: 14px;
-            padding: 10px 0; /* 버튼 내부 패딩 */
+            font-size: 16px;
+            padding: 15px 0; /* 버튼 내부 패딩 */
+        }
+        .kakao-btn {
+            background-color: #FFEB3B; /* 노란색으로 유지 */
+        }
+        .phone-btn {
+            background-color: #2196F3; /* 전화 연결 버튼에 파란색 */
         }
     }
 </style>
